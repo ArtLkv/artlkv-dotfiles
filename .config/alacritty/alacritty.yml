@@ -1,0 +1,22 @@
+font:
+  normal:
+    family: JetbrainsMono Nerd Font
+    style: Regular
+  bold:
+    family: JetbrainsMono Nerd Font
+    style: Bold
+  italic:
+    family: JetbrainsMono Nerd Font
+    style: Italic
+  bold_italic:
+    family: JetbrainsMono Nerd Font
+    style: Bold Italic
+  size: 16
+shell:
+  program: /bin/fish
+import:
+  - ~/.alacritty-colorscheme/themes/gruvbox_dark.yaml
+window:
+  dimensions:
+    columns: 80
+    lines: 30
