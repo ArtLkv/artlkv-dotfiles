@@ -10,7 +10,7 @@ font pango:JetbrainsMono Nerd Font 14
 #####################################################################################################################
 #################                           Menu's in ArchLinux                                     #################
 #####################################################################################################################
-bindsym $mod+d exec --no-startup-id rofi -show run -font "JetbrainsMono Nerd Font 14"
+bindsym $mod+Shift+d exec --no-startup-id rofi -show run -font "JetbrainsMono Nerd Font 14"
 #####################################################################################################################
 #################                                     Autostart                                     #################
 #####################################################################################################################
@@ -23,7 +23,7 @@ exec --no-startup-id nm-applet
 bindsym $mod+Return exec --no-startup-id alacritty;focus
 bindsym $mod+Shift+Return exec --no-startup-id alacritty -e ranger ;focus
 
-bindsym $mod+e exec --no-startup-id dolphin;focus
+bindsym $mod+d exec --no-startup-id dolphin;focus
 bindsym control+mod1+u exec --no-startup-id pavucontrol
 #####################################################################################################################
 #################                                Workspaces                                         #################
