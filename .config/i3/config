@@ -105,7 +105,6 @@ bindsym $mod+Shift+r restart
 #################                          Stopping an application                                  #################
 #####################################################################################################################
 # bindsym $mod+Shift+q kill
-bindsym $mod+shift+q  exec $HOME/.config/i3/scripts/screenoff.sh
 bindsym $mod+q kill
 #####################################################################################################################
 #################                          Moving around in i3                                      #################
@@ -135,14 +134,9 @@ bindsym $mod+Shift+Right move right
 #####################################################################################################################
 #################                          moving around workspaces                                 #################
 #####################################################################################################################
-# TODO: Is it need?
 # next/previous workspace
-bindsym Mod1+Tab workspace next
-bindsym Mod1+Shift+Tab workspace prev
-bindsym $mod+Tab workspace back_and_forth
-#navigate workspaces next / previous
-bindsym Mod1+Ctrl+Right workspace next
-bindsym Mod1+Ctrl+Left workspace prev
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
 #####################################################################################################################
 #################                     Resize windows(also use the mouse)                            #################
 #####################################################################################################################

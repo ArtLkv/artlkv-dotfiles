@@ -1,7 +1,9 @@
 #!/bin/sh
+
+
 case "$1" in
     lock)
-        i3lock -i ~/Pictures/Wallpapers/wallpaper.jpg
+       i3lock -i ~/Pictures/Wallpapers/wallpaper.jpg
         ;;
     logout)
         i3-msg exit
