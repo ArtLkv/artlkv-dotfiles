@@ -125,7 +125,7 @@ pacstrap /mnt sudo curl wget git neofetch lshw which reflector rsync ccache open
 ```
 Install the terminal(TUI) apps.
 ```bash
-pacstrap /mnt neovim tmux fish htop
+pacstrap /mnt neovim tmux fish htop ranger
 ```
 
 ### Enter the system
@@ -242,7 +242,8 @@ makepkg -si
 
 ### Setup the fonts
 ```bash
-yay -S ttf-dejavu noto-fonts gnu-free-fonts
+yay -S ttf-dejavu noto-fonts gnu-free-fonts ttf-freefont ttf-ubuntu-font-family
+yay -S ttf-liberation ttf-droid ttf-roboto terminus-font
 yay -S ttf-jetbrains-mono-nerd ttf-hack-nerd
 ```
 
@@ -261,11 +262,6 @@ rm -rf /mnt/windows
 ```
 
 ## Install and configure the drivers
-
-### Install the X.ORG server
-```bash
-yay -S xorg-server xorg-xinit xorg-xset xorg-xsetroot xorg-xrandr xorg-xrdb
-```
 
 ### Video adapter(Nvidia)
 
