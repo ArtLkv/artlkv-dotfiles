@@ -145,20 +145,6 @@ arch-chroot /mnt
 
 ## Setup after installation
 
-### Create the user folders
-```bash
-mkdir ~/Downloads
-mkdir ~/Documents
-mkdir ~/Pictures
-mkdir ~/Videos
-mkdir ~/Music
-```
-
-### Install dotfiles
-```bash
-git clone https://www.github.com/ArtLkv/artlkv-dotfiles.git ~/Downloads/dotfiles
-```
-
 ### Setup locales.
 ```bash
 loadkeys /usr/share/kbd/keymaps/i386/qwerty/ru.map.gz
@@ -166,7 +152,7 @@ sudo echo 'KEYMAP=ru' >> /etc/vconsole.conf
 
 nvim /etc/locale.gen # And uncomment the en_US.UTF-8 and ru_RU.UTF-8
 local-gen
-sudo cp ~/Downloads/dotfiles/etc/locale.conf /etc/locale.conf
+curl -LO "https://raw.githubusercontent.com/ArtLkv/artlkv-dotfiles/main/etc/locale.conf" >> /etc/locale.conf
 ln -sf /usr/share/zoneinfo/Europe/Moscow /etc/localtime
 hwclock --systohc
 ```
@@ -228,6 +214,20 @@ reboot
 ```bash
 sudo nmcli dev wifi connect $ssid password $password
 ping www.archlinux.org -c 5
+```
+
+### Create the user folders
+```bash
+mkdir ~/Downloads
+mkdir ~/Documents
+mkdir ~/Pictures
+mkdir ~/Videos
+mkdir ~/Music
+```
+
+### Install dotfiles
+```bash
+git clone https://www.github.com/ArtLkv/artlkv-dotfiles.git ~/Downloads/dotfiles
 ```
 
 ### Setup the package manager
