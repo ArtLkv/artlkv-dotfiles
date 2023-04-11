@@ -40,6 +40,8 @@ sudo systemctl start sddm.service
 
 Install i3-wm.
 ```bash
+yay -S lightdm lightdm-gtk-greeter
+sudo systemctl enable lightdm
 yay -S i3-wm i3blocks i3lock
 yay -S alacritty rofi dolphin xrandr feh
 cp ~/Downloads/dotfiles/.config/i3/config ~/.config/i3/config
