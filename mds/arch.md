@@ -135,6 +135,11 @@ arch-chroot /mnt
 
 ## Setup after installation
 
+### Install dotfiles
+```bash
+git clone https://www.github.com/ArtLkv/artlkv-dotfiles.git ~/Downloads/dotfiles
+```
+
 ### Setup locales.
 ```bash
 loadkeys /usr/share/kbd/keymaps/i386/qwerty/ru.map.gz
@@ -142,8 +147,7 @@ sudo echo 'KEYMAP=ru' >> /etc/vconsole.conf
 
 nvim /etc/locale.gen # And uncomment the en_US.UTF-8 and ru_RU.UTF-8
 local-gen
-# TODO: Add download link to the `locale.conf` file, which place on in my github repo
-
+sudo cp ~/Downloads/dotfiles/etc/locale.conf /etc/locale.conf
 ln -sf /usr/share/zoneinfo/Europe/Moscow /etc/localtime
 ```
 
@@ -264,7 +268,7 @@ sudo nvim /etc/mkinitcpio.conf # And add to MODULES the nvidia, nvidia_modeset n
 sudo nvim /etc/default/grub # And change GRUB_CMDLINE_LINUX value to the nvidia_drm.modeset=1
 
 sudo mkdir /etc/pacman.d/hooks
-# TODO: Add download link to the nvidia.hook
+sudo cp ~/Downloads/dotfiles/etc/pacman.d/hooks/nvidia.hook /etc/pacman.d/hooks/nvidia.hook
 sudo nvidia-xconfig
 sudo mv /etc/X11/xorg.conf /etc/X11/xorg.conf.d/20-nvidia.conf
 
@@ -297,15 +301,7 @@ sudo nvim /etc/default/grub # And change GRUB_CMDLINE_LINUX value to the...
 
 Create the X11 conf.
 ```bash
-sudo nvim /etc/X11/xorg.conf.d/20-amdgpu.conf
-```
-
-File 20-amdgpu.conf.
-```bash 
-Section "Device"
-    Identifier "AMD"
-    Driver "amdgpu"
-EndSection
+sudo cp ~/Downloads/dotfiles/etc/X11/xorg.conf.d/20-amdgpu.conf /etc/X11/xorg.conf.d/20-amdgpu.conf
 ```
 
 Reboot.
@@ -317,7 +313,7 @@ reboot
 
 ### Keyboard
 ```bash
-TODO: Add the download link to 00-keyboard.conf
+sudo cp ~/Downloads/dotfiles/etc/X11/xorg.conf.d/00-keyboard/conf /etc/X11/xorg.conf.d/00-keyboard.conf
 ```
 
 ### TP-LINK Wireless USB Adapter
