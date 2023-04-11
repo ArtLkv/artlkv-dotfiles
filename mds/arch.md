@@ -55,6 +55,7 @@ mkswap /dev/$swap_partition
 swapon /dev/$swap_partition
 
 # efi
+mkfs.fat -F32 /dev/$efi_partition # If you don't use dualboot
 mkdir /mnt/efi
 mount /dev/$efi_partition /mnt/efi
 ```
@@ -77,6 +78,8 @@ mount -o noatime,commit=120,compress=zstd,space_cache=v2,subvol=@home /dev/$root
 mount -o noatime,commit=120,compress=zstd,space_cache=v2,subvol=@opt /dev/$root_partition /mnt/opt
 mount -o noatime,commit=120,compress=zstd,space_cache=v2,subvol=@tmp /dev/$root_partition /mnt/tmp
 mount -o subvol=@var /dev/$root_partition /mnt/var
+
+mkfs.fat -F32 /dev/$efi_partition # If you don't use dualboot
 mount /dev/$efi_partition /mnt/efi
 ```
 
@@ -106,19 +109,23 @@ pacstrap /mnt btrfs-progs grub-btrfs
 ```
 Install the printers support.
 ```bash
-pacstrap /mnt cups cups-pdf tlp
+pacstrap /mnt cups cups-pdf
 ```
-Install the drivers and other system packages.
+Install the laptop battery packages.
 ```bash
-pacstrap /mnt wpa_supplicant networkmanager acpid dialog
+pacstrap /mnt tlp tlp-rdw powertop acpi acpi-call
+```
+Install the system packages.
+```bash
+pacstrap /mnt iw wpa_supplicant networkmanager network-manager-applet acpid dialog dhcpcd
 ```
 Install the MUST-HAVE utils.
 ```bash
-pacstrap /mnt sudo git neofetch which reflector rsync ccache openssh
+pacstrap /mnt sudo curl wget git neofetch lshw which reflector rsync ccache openssh unzip
 ```
 Install the terminal(TUI) apps.
 ```bash
-pacstrap /mnt neovim tmux fish
+pacstrap /mnt neovim tmux fish htop
 ```
 
 ### Enter the system
@@ -149,24 +156,25 @@ nvim /etc/locale.gen # And uncomment the en_US.UTF-8 and ru_RU.UTF-8
 local-gen
 sudo cp ~/Downloads/dotfiles/etc/locale.conf /etc/locale.conf
 ln -sf /usr/share/zoneinfo/Europe/Moscow /etc/localtime
+hwclock --systohc
 ```
 
 ### Create the main user.
 ```bash
 passwd # Change password to the root user(I give a tip: use the one password for root and main user).
-useradd -m -g users -G wheel,storage,power -s /bin/fish $username
+useradd -m -g users -G wheel,storage,power,audio -s /bin/fish $username
 passwd $username # Change password to the main user
 
-EDITOR=nvim visudo # And uncomment the %wheel ALL=(ALL:ALL) ALL
+EDITOR=nvim visudo # And uncomment the `%wheel ALL=(ALL:ALL) ALL`
 echo '$username' > /etc/hostname
 nvim /etc/hosts
 ```
 
 In file `/etc/hosts`.
 ```bash
-127.0.0.1   localhost
-::1         localhost
-127.0.0.1   $username.localdomain   localhost
+127.0.0.1   localhost.localdomain   localhost
+::1         localhost.localdomain   localhost
+127.0.0.1   $username.localdomain   $username
 ```
 
 ### Setup the boot loader
@@ -183,11 +191,16 @@ grub-mkconfig -o /boot/grub/grub.cfg
 ```bash
 systemctl enable NetworkManager.service
 systemctl enable sshd
+systemctl enadle dhcpcd
 systemctl enable acpid
 systemctl enable reflector.timer
 systemctl enable fstrim.timer
 systemctl enable cups.service
 systemctl enable tlp.service
+systemctl enable tlp-sleep
+
+systemctl mask systemd-rfkill.service
+systemctl mask systemd-rfkill.socket
 ```
 
 ### Reboot the system
@@ -216,8 +229,8 @@ mkdir ~/Music
 
 ### Setup the package manager
 ```bash
-sudo nvim /etc/pacman.conf # And uncomment the [multilib] block, and uncommet the Color option
-sudo reflector --verbose --country 'Russia' -l 25 --sort rate --save /etc/pacman.d/mirrorlist
+sudo nvim /etc/pacman.conf # And uncomment the [multilib] block, and uncomment the Color option, and add below ILoveCandy option
+sudo reflector --verbose --country 'Russia' --latest 5 --sort rate --save /etc/pacman.d/mirrorlist # You can use it without country flag
 sudo nvim /etc/pacman.d/mirrorlist # And add the mirror.yandex.ru/archlinux/$repo/os/$arch
 sudo pacman -Suy
 cd ~/Downloads
@@ -332,7 +345,9 @@ yay -U rtl88xxau-aircrack-dkms-git-*.pkg.tar.zst
 
 ### Bluetooth and audio card
 ```bash
-yay -S bluez bluez-utils pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber pavucontrol alsa-utils
+yay -S bluez bluez-utils blueman
+yay -S alsa-utils alsa-plugins
+yay -S pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber pavucontrol
 yay -S lib32-pipewire lib32-pipewire-jack
 
 sudo mkdir -p ~/.config/pipewire/pipewire.conf

@@ -20,4 +20,14 @@ sudo systemctl start sddm.service
 If you want use Xfce, Cinnamon, Mate and others Cascade Window Managers. `Google it`.
 
 ## Tiling Window Manager
-Coming soon...
+
+### i3
+- i3-wm
+- polybar
+- conky
+
+Install i3-wm.
+```bash
+
+```
+
