@@ -79,6 +79,9 @@ mount -o noatime,commit=120,compress=zstd,space_cache=v2,subvol=@opt /dev/$root_
 mount -o noatime,commit=120,compress=zstd,space_cache=v2,subvol=@tmp /dev/$root_partition /mnt/tmp
 mount -o subvol=@var /dev/$root_partition /mnt/var
 
+mkswap /dev/$swap_partition
+swapon /dev/$swap_partition
+
 mkfs.fat -F32 /dev/$efi_partition # If you don't use dualboot
 mount /dev/$efi_partition /mnt/efi
 ```
@@ -113,7 +116,7 @@ pacstrap /mnt cups cups-pdf
 ```
 Install the laptop battery packages.
 ```bash
-pacstrap /mnt tlp tlp-rdw powertop acpi acpi-call
+pacstrap /mnt tlp tlp-rdw powertop acpi
 ```
 Install the system packages.
 ```bash
@@ -141,6 +144,15 @@ arch-chroot /mnt
 ```
 
 ## Setup after installation
+
+### Create the user folders
+```bash
+mkdir ~/Downloads
+mkdir ~/Documents
+mkdir ~/Pictures
+mkdir ~/Videos
+mkdir ~/Music
+```
 
 ### Install dotfiles
 ```bash
@@ -216,15 +228,6 @@ reboot
 ```bash
 sudo nmcli dev wifi connect $ssid password $password
 ping www.archlinux.org -c 5
-```
-
-### Create the user folders
-```bash
-mkdir ~/Downloads
-mkdir ~/Documents
-mkdir ~/Pictures
-mkdir ~/Videos
-mkdir ~/Music
 ```
 
 ### Setup the package manager
