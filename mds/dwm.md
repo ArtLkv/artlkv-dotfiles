@@ -25,26 +25,4 @@ sudo systemctl start sddm.service
 ```
 
 ## Tiling Window Manager
-
-### i3
-
-- clash - tunnel
-- glava, cala - audio vizualizer
-- conky - system monitor
-- dunst - notification system
-- polybar - status bar
-- feh - image viewer and wallpaper changer
-- rofi - window switcher
-- ncmpcpp, playerctl - mpd client
-- picom - windows compositor
-
-Install i3-wm.
-```bash
-yay -S lightdm lightdm-gtk-greeter
-sudo systemctl enable lightdm
-yay -S i3-wm i3blocks i3lock
-yay -S alacritty rofi dolphin xrandr feh
-cp ~/Downloads/dotfiles/.config/i3/config ~/.config/i3/config
-# yay -S numlockx rofi dmenu
-```
-
+Coming soon..
