@@ -8,4 +8,4 @@ Target=nvidia-dkms
 [Action]
 Depends=mkinitcpio
 When=PostTransaction
-Exec/usr/bin/mkinitcpio -P
+Exec=/usr/bin/mkinitcpio -P

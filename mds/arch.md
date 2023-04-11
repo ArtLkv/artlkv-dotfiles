@@ -152,7 +152,7 @@ sudo echo 'KEYMAP=ru' >> /etc/vconsole.conf
 
 nvim /etc/locale.gen # And uncomment the en_US.UTF-8 and ru_RU.UTF-8
 local-gen
-curl -LO "https://raw.githubusercontent.com/ArtLkv/artlkv-dotfiles/main/etc/locale.conf" >> /etc/locale.conf
+curl -L "https://raw.githubusercontent.com/ArtLkv/artlkv-dotfiles/main/etc/locale.conf" >> /etc/locale.conf
 ln -sf /usr/share/zoneinfo/Europe/Moscow /etc/localtime
 hwclock --systohc
 ```
@@ -181,7 +181,7 @@ nvim /etc/mkinitcpio.conf # And add to MODULES the btrfs
 nvim /etc/default/grub # And uncomment the GRUB_DISABLE_OS_PROBER=false
 
 mkinitcpio -P linux
-grub-install --target=x86_64-efi --efi-directory=/efi --bootload-id=ARCH --recheck
+grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=ARCH --recheck
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
@@ -189,13 +189,12 @@ grub-mkconfig -o /boot/grub/grub.cfg
 ```bash
 systemctl enable NetworkManager.service
 systemctl enable sshd
-systemctl enadle dhcpcd
+systemctl enable dhcpcd
 systemctl enable acpid
 systemctl enable reflector.timer
 systemctl enable fstrim.timer
 systemctl enable cups.service
 systemctl enable tlp.service
-systemctl enable tlp-sleep
 
 systemctl mask systemd-rfkill.service
 systemctl mask systemd-rfkill.socket
@@ -233,11 +232,10 @@ git clone https://www.github.com/ArtLkv/artlkv-dotfiles.git ~/Downloads/dotfiles
 ### Setup the package manager
 ```bash
 sudo nvim /etc/pacman.conf # And uncomment the [multilib] block, and uncomment the Color option, and add below ILoveCandy option
-sudo reflector --verbose --country 'Russia' --latest 5 --sort rate --save /etc/pacman.d/mirrorlist # You can use it without country flag
+sudo reflector --verbose --country 'Germany' --latest 5 --sort rate --save /etc/pacman.d/mirrorlist # You can use it without country flag
 sudo nvim /etc/pacman.d/mirrorlist # And add the mirror.yandex.ru/archlinux/$repo/os/$arch
 sudo pacman -Suy
 cd ~/Downloads
-sudo pacman -S --needed git base-devel
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
@@ -245,8 +243,8 @@ makepkg -si
 
 ### Setup the fonts
 ```bash
-yay -S ttf-dejavu noto-fonts gnu-free-fonts ttf-freefont ttf-ubuntu-font-family
-yay -S ttf-liberation ttf-droid ttf-roboto terminus-font
+yay -S ttf-dejavu noto-fonts ttf-freefont ttf-ubuntu-font-family
+yay -S ttf-liberation ttf-droid ttf-roboto terminus-font gnu-free-fonts
 yay -S ttf-jetbrains-mono-nerd ttf-hack-nerd
 ```
 
@@ -260,8 +258,8 @@ sudo mkdir /usr/share/fonts/WindowsFonts/
 sudo cp ~/Downloads/WindowsFonts/* /usr/share/fonts/WindowsFonts/
 sudo chmod 644 /usr/share/fonts/WindowsFonts/*
 fc-cache --force
-umount /mnt/windows
-rm -rf /mnt/windows
+sudo umount /mnt/windows
+sudo rm -rf /mnt/windows
 ```
 
 ## Install and configure the drivers
@@ -349,12 +347,12 @@ yay -S alsa-utils alsa-plugins
 yay -S pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber pavucontrol
 yay -S lib32-pipewire lib32-pipewire-jack
 
-sudo mkdir -p ~/.config/pipewire/pipewire.conf
+sudo mkdir -p ~/.config/pipewire/
 sudo cp /usr/share/pipewire/*.conf ~/.config/pipewire
 sudo nvim ~/.config/pipewire/pipewire.conf # And change default.clock.allowed-rates value to the [44100 48000]
 
-sudo systemctl --user enable pipewire.service
-sudo systemctl --user enable pipewire-pulse.service
+systemctl --user enable pipewire.service
+systemctl --user enable pipewire-pulse.service
 sudo systemctl enable bluetooth.service
 ```
 
