@@ -1,3 +1,15 @@
+window:
+  opacity: 1.0
+  padding:
+    x: 6
+    y: 5
+  dynamic_padding: true
+  decorations: full
+
+cursor:
+  style:
+    shape: underline
+
 font:
   normal:
     family: JetbrainsMono Nerd Font
@@ -12,11 +24,30 @@ font:
     family: JetbrainsMono Nerd Font
     style: Bold Italic
   size: 16
+
 shell:
   program: /bin/fish
-import:
-  - ~/.alacritty-colorscheme/themes/gruvbox_dark.yaml
-window:
-  dimensions:
-    columns: 80
-    lines: 30
+
+colors:
+  primary:
+    background: '0x1d2021'
+    foreground: '0xdfbf8e'
+  normal:
+    black:   '0x665c54'
+    red:     '0xea6962'
+    green:   '0xa9b665'
+    yellow:  '0xe78a4e'
+    blue:    '0x7daea3'
+    magenta: '0xd3869b'
+    cyan:    '0x89b482'
+    white:   '0xdfbf8e'
+  bright:
+    black:   '0x928374'
+    red:     '0xea6962'
+    green:   '0xa9b665'
+    yellow:  '0xe3a84e'
+    blue:    '0x7daea3'
+    magenta: '0xd3869b'
+    cyan:    '0x89b482'
+    white:   '0xdfbf8e'
+

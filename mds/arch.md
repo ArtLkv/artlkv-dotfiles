@@ -124,11 +124,11 @@ pacstrap /mnt iw wpa_supplicant networkmanager network-manager-applet acpid dial
 ```
 Install the MUST-HAVE utils.
 ```bash
-pacstrap /mnt sudo curl wget git neofetch lshw which reflector rsync ccache openssh unzip
+pacstrap /mnt sudo curl wget git neofetch lshw fzf ripgrep jq which reflector rsync ccache openssh unzip
 ```
 Install the terminal(TUI) apps.
 ```bash
-pacstrap /mnt neovim tmux fish htop ranger fzf ripgrep
+pacstrap /mnt neovim tmux fish htop ranger mpd
 ```
 
 ### Enter the system
@@ -243,7 +243,7 @@ makepkg -si
 
 ### Setup the fonts
 ```bash
-yay -S ttf-dejavu noto-fonts ttf-freefont ttf-ubuntu-font-family
+yay -S ttf-dejavu noto-fonts ttf-freefont ttf-ubuntu-font-family ttf-font-awesome
 yay -S ttf-liberation ttf-droid ttf-roboto terminus-font gnu-free-fonts
 yay -S ttf-jetbrains-mono-nerd ttf-hack-nerd
 ```

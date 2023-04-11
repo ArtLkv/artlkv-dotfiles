@@ -2,12 +2,7 @@
 
 ## Install X.ORG server
 ```bash
-yay -S xorg-server xorg-xinit xorg-apps
-```
-
-## Install the browser and terminal app
-```bash
-yay -S firefox alacritty
+yay -S xorg-server xorg-xinit
 ```
 
 ## Cascade Window Manager
@@ -33,16 +28,21 @@ sudo systemctl start sddm.service
 
 ### i3
 
+- clash - tunnel
+- glava, cala - audio vizualizer
+- conky - system monitor
+- dunst - notification system
+- polybar - status bar
+- feh - image viewer and wallpaper changer
+- rofi - window switcher
+- ncmpcpp, playerctl - mpd client
+
 Install i3-wm.
 ```bash
-yay -S i3-wm i3status i3blocks i3lock
-yay -S numlockx rofi dmenu
-```
-
-Install display manager.
-```bash
-yay -S lightdm lightdm-gtk-greeter
-sudo systemctl enable lightdm
-sudo systemctl start lightdm
+yay -S i3-wm i3blocks i3lock
+yay -S alacritty dmenu
+echo 'exec i3' >> ~/.xinitrc
+startx
+# yay -S numlockx rofi dmenu
 ```
 
