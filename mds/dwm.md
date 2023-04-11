@@ -36,13 +36,13 @@ sudo systemctl start sddm.service
 - feh - image viewer and wallpaper changer
 - rofi - window switcher
 - ncmpcpp, playerctl - mpd client
+- picom - windows compositor
 
 Install i3-wm.
 ```bash
 yay -S i3-wm i3blocks i3lock
-yay -S alacritty dmenu xrandr
-echo 'exec i3' >> ~/.xinitrc
-startx
+yay -S alacritty rofi dolphin xrandr
+cp ~/Downloads/dotfiles/.config/i3/config ~/.config/i3/config
 # yay -S numlockx rofi dmenu
 ```
 
