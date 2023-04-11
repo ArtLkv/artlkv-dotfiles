@@ -125,7 +125,7 @@ pacstrap /mnt sudo curl wget git neofetch lshw which reflector rsync ccache open
 ```
 Install the terminal(TUI) apps.
 ```bash
-pacstrap /mnt neovim tmux fish htop ranger
+pacstrap /mnt neovim tmux fish htop ranger fzf ripgrep
 ```
 
 ### Enter the system
