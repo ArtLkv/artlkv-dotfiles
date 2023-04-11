@@ -229,7 +229,7 @@ makepkg -si
 
 ### Setup the fonts
 ```bash
-yay -S ttf-dejavu noto-fonts
+yay -S ttf-dejavu noto-fonts gnu-free-fonts
 yay -S ttf-jetbrains-mono-nerd ttf-hack-nerd
 ```
 
@@ -248,6 +248,11 @@ rm -rf /mnt/windows
 ```
 
 ## Install and configure the drivers
+
+### Install the X.ORG server
+```bash
+yay -S xorg-server xorg-xinit xorg-xset xorg-xsetroot xorg-xrandr xorg-xrdb
+```
 
 ### Video adapter(Nvidia)
 
