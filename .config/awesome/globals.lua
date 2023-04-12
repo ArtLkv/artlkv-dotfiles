@@ -1,3 +1,5 @@
+DEBUG = (os.getenv("DEBUG") or "") ~= ""
+
 Capi = {
     ---@diagnostic disable: undefined-global
     awesome = awesome,
@@ -17,3 +19,6 @@ Capi = {
     window = window,
     ---@diagnostic enable: undefined-global
 }
+
+---@type fun(value: number): number
+Dpi = require("beautiful.xresources").apply_dpi
