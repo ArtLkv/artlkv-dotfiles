@@ -19,8 +19,8 @@ config.places.home = os.getenv("HOME")
 config.places.config = os.getenv("XDG_CONFIG_HOME") or (config.places.home .. "/.config")
 config.places.awesome = string.match(gfilesystem.get_configuration_dir(), "^(/?.-)/*$")
 config.places.theme = config.places.awesome .. "/theme"
-config.places.screenshots = config.places.home .. "/inbox/screenshots"
-config.places.wallpapers = config.places.home .. "/media/look/wallpapers"
+config.places.screenshots = config.places.home .. "/Pictures/Screenshots"
+config.places.wallpapers = config.places.home .. "/Pictures/Wallpapers"
 
 config.wm = {
     name = "awesome",
@@ -30,17 +30,17 @@ local terminal = "alacritty"
 local terminal_execute = terminal .. " -e "
 
 config.apps = {
-    shell = "bash",
+    shell = "fish",
     terminal = terminal,
-    editor = terminal_execute .. "micro",
-    browser = "librewolf",
-    private_browser = "librewolf --private-window",
-    file_manager = terminal_execute .. "lf",
+    editor = terminal_execute .. "nvim",
+    browser = "firefox",
+    private_browser = "firefox --private-window",
+    file_manager = terminal_execute .. "ranger",
     calculator = "speedcrunch",
     mixer = terminal_execute .. "pulsemixer",
     bluetooth_control = terminal_execute .. "bluetoothctl",
-    music_player = "spotify",
-    video_player = "freetube",
+    -- music_player = "spotify",
+    -- video_player = "freetube",
 }
 
 config.power = {
@@ -54,7 +54,7 @@ config.power = {
 
 config.actions = {
     qr_code_clipboard = "qrclip",
-    show_launcher = "rofi -show",
+    show_launcher = "rofi -show drun",
     show_emoji_picker = config.places.config .. "/rofi/emoji-run.sh",
 }
 

@@ -19,3 +19,8 @@ flatpak --user override --filesystem=/usr/share/icons/:ro org.telegram.desktop
 ```bash
 flatpak install flathub org.keepassxc.KeePassXC
 ```
+
+## Install OnlyOffice
+```bash
+flatpak install flathub org.onlyoffice.desktopeditors
+```
