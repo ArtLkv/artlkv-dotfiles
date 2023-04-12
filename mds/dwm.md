@@ -5,6 +5,11 @@
 yay -S xorg-server xorg-xinit
 ```
 
+## Install some usefull apps.
+```bash
+yay -S firefox alacritty
+```
+
 ## Cascade Window Manager
 
 If you want use Xfce, Cinnamon, Mate and others Cascade Window Managers. `Google it`.
@@ -25,4 +30,13 @@ sudo systemctl start sddm.service
 ```
 
 ## Tiling Window Manager
-Coming soon..
+
+### awesome
+Install required dependencies.
+```bash
+yay -S awesome-git xdg-utils xclip
+yay -S pulsemixer playerctl # For controlling system volume and media player
+
+echo 'exec awesome' > ~/.xinitrc
+startx
+```
