@@ -36,7 +36,9 @@ Install required dependencies.
 ```bash
 yay -S awesome-git xdg-utils xclip
 yay -S pulsemixer playerctl # For controlling system volume and media player
+yay -S feh flameshot rofi picom ranger
 
-echo 'exec awesome' > ~/.xinitrc
-startx
+mkdir ~/.config/awesome
+sudo cp -r ~/Downloads/dotfiles/.config/awesome/* ~/.config/awesome/
+sudo cp ~/Downloads/dotfiles/.xinitrc ~/.xinitrc
 ```
