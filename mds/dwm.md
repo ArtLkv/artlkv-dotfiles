@@ -28,17 +28,10 @@ yay -S plasma kde-applications
 sudo systemctl enable sddm.service
 sudo systemctl start sddm.service
 ```
+### Xfce
 
-## Tiling Window Manager
-
-### awesome
-Install required dependencies.
+Install XFCE:
 ```bash
-yay -S awesome-git xdg-utils xclip
-yay -S pulsemixer playerctl # For controlling system volume and media player
-yay -S feh flameshot rofi picom ranger
-
-mkdir ~/.config/awesome
-sudo cp -r ~/Downloads/dotfiles/.config/awesome/* ~/.config/awesome/
-sudo cp ~/Downloads/dotfiles/.xinitrc ~/.xinitrc
+yay -S xfce4 xfce4-goodies
 ```
+https://notabug.org/owl410/owl_dotfiles/src/master/XFCE/xfce_tokio_night

@@ -6,3 +6,4 @@ In all configs I prefere use Gruvbox theme.
 2. [Install Desktop Window Manager](./mds/dwm.md)
 3. [Configure terminal setup](./mds/terminal.md)
 4. [My applications and their configurations](./mds/applications.md)
+5. [Arch setup for gaming](./mds/game_setup.md)
