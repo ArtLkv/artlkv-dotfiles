@@ -23,8 +23,6 @@ return require('packer').startup(function(use)
   use { 'nvim-lua/plenary.nvim' }
   use { 'windwp/nvim-autopairs' }
   use { 'tpope/vim-commentary' }
-  -- Terminal Support
-  use { 'akinsho/toggleterm.nvim', tag = '*' }
   -- UI
   use { 'nvim-tree/nvim-web-devicons' }
   use { 'nvim-tree/nvim-tree.lua' }

@@ -1,5 +1,6 @@
 function ColorMyPencils(color)
-  color = color or "gruvbox"
+  -- color = color or "gruvbox"
+  color = color or "tokyonight"
   vim.cmd.colorscheme(color)
 
   -- Disable background
