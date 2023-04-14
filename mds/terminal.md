@@ -15,15 +15,10 @@ sudo mkdir ~/.config/alacritty
 sudo cp ~/Downloads/dotfiles/.config/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
 ```
 
-## Install Oh-My-Fish
+## Install spaceship
 ```bash
-curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
-omf update
-omf install sushi
-```
-Check up is working fine or not.
-```bash
-omf doctor
+curl -sS https://starship.rs/install.sh | sh
+sudo nvim ~/.config/fish/config.fish # And add `starship init fish | source`
 ```
 
 ## Neofetch
