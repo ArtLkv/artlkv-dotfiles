@@ -1,0 +1,5 @@
+require('ui.colors')
+require('ui.icons')
+require('ui.bufferline')
+require('ui.lualine')
+require('ui.tree')
