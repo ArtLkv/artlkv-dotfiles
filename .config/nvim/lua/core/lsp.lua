@@ -48,24 +48,10 @@ lspconfig.pyright.setup({
   single_file_support = true,
 })
 
-
-lspconfig.cmake.setup({
-  cmd = { 'cmake-language-server' },
-  filetypes = { 'cmake' },
-  root_dir = util.root_pattern('CMakePresets.json', 'CTestConfig.cmake', '.git', 'build', 'cmake'),
-  single_file_support = true,
-  init_options = {
-    buildDirectory = 'build',
-  },
-})
-
-lspconfig.clangd.setup({
+lspconfig.gopls.setup({
   on_attach = on_attach,
-  cmd = { 'clangd' },
-  filetypes = { 'c', 'cpp', 'cuda', 'obj', 'objcpp', 'proto' },
-  root_dir = util.root_pattern('.clangd', '.clang-tidy', '.clang-format',
-    'compile_commands.json', 'compile_flags.txt', 'configure.ac', '.git'),
+  cmd = { 'gopls' },
+  filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
+  root_dir = util.root_pattern('go.mod', '.git'),
   single_file_support = true,
 })
-
-

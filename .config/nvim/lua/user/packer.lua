@@ -11,18 +11,17 @@ return require('packer').startup(function(use)
   -- Colorscheme
   use { 'ellisonleao/gruvbox.nvim' }
   use { 'folke/tokyonight.nvim' }
+  use { 'Mofiqul/vscode.nvim' }
   -- File Parser
   use { 'nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' } }
-  use { 'nvim-treesitter/playground' }
+  -- use { 'nvim-treesitter/playground' }
   -- Telescope, Fzf
   use { 'nvim-telescope/telescope.nvim', tag = '0.1.1' }
   -- Git support
-  use { 'tpope/vim-fugitive' }
-  use { 'mbbill/undotree' }
+  -- use { 'tpope/vim-fugitive' }
   -- Miscellaneous
   use { 'nvim-lua/plenary.nvim' }
   use { 'windwp/nvim-autopairs' }
-  use { 'tpope/vim-commentary' }
   -- UI
   use { 'nvim-tree/nvim-web-devicons' }
   use { 'nvim-tree/nvim-tree.lua' }
@@ -33,8 +32,6 @@ return require('packer').startup(function(use)
   use { 'neovim/nvim-lspconfig' }
   use { 'ray-x/lsp_signature.nvim' }
   -- Debugger
-  use { 'mfussenegger/nvim-dap' }
-  use { 'rcarriga/cmp-dap' }
   -- Autocomplete - hrsh7th pack
   use { 'hrsh7th/nvim-cmp' }
   use { 'hrsh7th/cmp-nvim-lsp' }
@@ -45,7 +42,8 @@ return require('packer').startup(function(use)
   use { 'saadparwaiz1/cmp_luasnip' }
   use { 'L3MON4D3/LuaSnip' }
   use { 'rafamadriz/friendly-snippets' }
-
+  -- Tools for DevOps and Golang
+  -- use { 'olexsmir/gopher.nvim' }
 
   if packer_boostrap then
     require('packer').sync()
