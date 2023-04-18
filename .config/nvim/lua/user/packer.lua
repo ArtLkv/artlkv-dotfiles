@@ -9,8 +9,6 @@ return require('packer').startup(function(use)
   -- Package Manager
   use { 'wbthomason/packer.nvim' }
   -- Colorscheme
-  use { 'ellisonleao/gruvbox.nvim' }
-  use { 'folke/tokyonight.nvim' }
   use { 'Mofiqul/vscode.nvim' }
   -- File Parser
   use { 'nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' } }
@@ -18,7 +16,6 @@ return require('packer').startup(function(use)
   -- Telescope, Fzf
   use { 'nvim-telescope/telescope.nvim', tag = '0.1.1' }
   -- Git support
-  -- use { 'tpope/vim-fugitive' }
   -- Miscellaneous
   use { 'nvim-lua/plenary.nvim' }
   use { 'windwp/nvim-autopairs' }
@@ -43,7 +40,6 @@ return require('packer').startup(function(use)
   use { 'L3MON4D3/LuaSnip' }
   use { 'rafamadriz/friendly-snippets' }
   -- Tools for DevOps and Golang
-  -- use { 'olexsmir/gopher.nvim' }
 
   if packer_boostrap then
     require('packer').sync()

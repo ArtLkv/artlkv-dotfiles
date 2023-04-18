@@ -6,7 +6,6 @@ vim.g.mapleader = ' '
 function save_file()
   vim.cmd[[update]]
 end
-map('n', '<leader>t', vim.cmd.ToggleTerm)
 map('n', '<leader>sf', save_file)
 ----------------------------
 -- Disable arrows. Only hjkl
@@ -18,8 +17,7 @@ map('', '<right>', '', opts)
 ----------------------------
 -- Git Mappings
 ----------------------------
-map('n', '<leader>gs', vim.cmd.Git)
-map('n', '<leader>u', vim.cmd.UndotreeToggle)
+-- Coming soon
 ---------------------------
 -- Telescope Mappings
 -----------------------------
