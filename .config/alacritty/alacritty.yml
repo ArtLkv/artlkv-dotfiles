@@ -23,9 +23,8 @@ font:
 
 shell:
   program: /bin/fish
+  # program: /bin/pwsh
 
-colors:
-  # Colors (Dark plus)
 colors:
   primary:
     background: '0x1E1E1E'

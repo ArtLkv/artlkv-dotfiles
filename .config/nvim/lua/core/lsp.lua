@@ -1,6 +1,5 @@
 local lspconfig = require('lspconfig')
 local util = require('lspconfig/util')
-
 local map = vim.keymap.set
 
 vim.diagnostic.config({ signs = false })
@@ -54,4 +53,17 @@ lspconfig.gopls.setup({
   filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
   root_dir = util.root_pattern('go.mod', '.git'),
   single_file_support = true,
+})
+
+lspconfig.omnisharp.setup({
+  on_attach = on_attach,
+  cmd = { 'dotnet', '/home/artlkv/omnisharp/OmniSharp.dll' },
+  root_dir = util.root_pattern('.csproj', '.sln', '.git'),
+  sdk_include_prereleases = true,
+  enable_import_completion = true,
+  enable_editorconfig_support = true,
+  organize_import_on_format = false,
+  enable_roslyn_analyzers = false,
+  analyze_open_documents_only = false,
+  enable_ms_build_load_projects_on_demand = false, -- Set True if very big codebase
 })
