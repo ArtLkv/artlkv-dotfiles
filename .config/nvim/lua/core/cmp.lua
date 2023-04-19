@@ -1,17 +1,39 @@
 local cmp = require('cmp')
 local lspkind = require('lspkind')
 
-local source_mappings = {
-  buffer = '[Buffer]',
-  nvim_lsp = '[LSP]',
-  nvim_lua = '[Lua]',
-  cmp_tabnine = '[TN]',
-  path = '[Path]',
-}
----------------------------------
+lspkind.init({
+  mode = 'symbol_text',
+  preset = 'codicons',
+  symbol_map = {
+    Text = "",
+    Method = "",
+    Function = "",
+    Constructor = "",
+    Field = "ﰠ",
+    Variable = "",
+    Class = "ﴯ",
+    Interface = "",
+    Module = "",
+    Property = "ﰠ",
+    Unit = "塞",
+    Value = "",
+    Enum = "", 
+    Keyword = "",
+    Snippet = "",
+    Color = "",
+    File = "",
+    Reference = "",
+    Folder = "",
+    EnumMember = "",
+    Constant = "",
+    Struct = "פּ",
+    Event = "",
+    Operator = "",
+    TypeParameter = ""
+  },
+})
+--------------------------------------------
 -- Main setup
----------------------------------
-
 cmp.setup({
   window = {
     completion = cmp.config.window.bordered(),
@@ -38,11 +60,14 @@ cmp.setup({
     { name = 'buffer' },
   }),
   formatting = {
-    format = function(entry, item)
-      item.kind = lspkind.presets.default[item.kind]
-      local menu = source_mappings[entry.source.name]
-      item.menu = menu
-      return item
-    end,
+    format  = lspkind.cmp_format({
+      mode = 'symbol',
+      maxwidth = 50,
+      ellipsis_char = '...',
+      before = function(entry, vim_item)
+        return vim_item
+      end,
+    }),
   },
 })
+--------------------------------------------

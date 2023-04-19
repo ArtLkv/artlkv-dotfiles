@@ -1,47 +1,44 @@
 vim.cmd [[packadd packer.nvim]]
 
+-- Install Packer(when use :so), if isn't install.
 local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   packer_boostrap = vim.fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
 end
 
 return require('packer').startup(function(use)
-  -- Package Manager
-  use { 'wbthomason/packer.nvim' }
-  -- Colorscheme
-  use { 'Mofiqul/vscode.nvim' }
-  -- File Parser
-  use { 'nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' } }
-  -- use { 'nvim-treesitter/playground' }
-  -- Telescope, Fzf
-  use { 'nvim-telescope/telescope.nvim', tag = '0.1.1' }
-  -- Git support
-  -- Miscellaneous
-  use { 'nvim-lua/plenary.nvim' }
-  use { 'windwp/nvim-autopairs' }
-  -- UI
-  use { 'nvim-tree/nvim-web-devicons' }
-  use { 'nvim-tree/nvim-tree.lua' }
-  use { 'nvim-lualine/lualine.nvim' }
-  use { 'akinsho/bufferline.nvim', tag = "v3.*" }
-  use { 'onsails/lspkind.nvim' }
-  -- LSP
-  use { 'neovim/nvim-lspconfig' }
-  use { 'ray-x/lsp_signature.nvim' }
-  -- Java Tools
-  use { 'mfussenegger/nvim-jdtls' }
-  -- Debugger
-  -- Autocomplete - hrsh7th pack
-  use { 'hrsh7th/nvim-cmp' }
-  use { 'hrsh7th/cmp-nvim-lsp' }
-  use { 'hrsh7th/cmp-buffer' }
-  use { 'hrsh7th/cmp-path' }
-  use { 'hrsh7th/cmp-emoji' } 
-  -- Snippets
+  use { 'wbthomason/packer.nvim' } -- Package Manager
+  use { 'Mofiqul/vscode.nvim' } -- VisualStudio Code Theme
+  ---------------------------------------------------
+  -- Require plugins
+  use { 'nvim-lua/plenary.nvim' } -- Async support for NeoVim
+  use { 'windwp/nvim-autopairs' } -- Auto add pair for brackets, tags and other
+  use { 'ray-x/lsp_signature.nvim' } -- If LSP don't support signature, fix it 
+  ---------------------------------------------------
+  -- Core plugins
+  use { 'nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' } } -- Text Parser
+  use { 'nvim-telescope/telescope.nvim', tag = '0.1.1' } -- Fzf Finder(fzf and ripgrep require)
+  use { 'nvim-tree/nvim-tree.lua' } -- File Manager
+  use { 'neovim/nvim-lspconfig' } -- LSP
+  use { 'hrsh7th/nvim-cmp' } -- Auto-Complete
+  ---------------------------------------------------
+  -- Auto-Complete plugins
+  use { 'hrsh7th/cmp-nvim-lsp' } -- Add LSP support for Auto-Complete
+  use { 'hrsh7th/cmp-buffer' } -- Add buffer as Auto-Complete source
+  use { 'hrsh7th/cmp-path' } -- Add path hints as Auto-Complete source
+  use { 'hrsh7th/cmp-emoji' } -- Add emoji support for Auto-Complete
+  ---------------------------------------------------
+  -- UI plugins
+  use { 'nvim-tree/nvim-web-devicons' } -- Add file icons for NvimTree
+  use { 'nvim-lualine/lualine.nvim' } -- Add status bar
+  use { 'akinsho/bufferline.nvim', tag = "v3.*" } -- Add tabs support
+  use { 'onsails/lspkind.nvim' } -- Add pictograms for built-in LSP
+  ---------------------------------------------------
+  -- Snippets plugins
   use { 'saadparwaiz1/cmp_luasnip' }
   use { 'L3MON4D3/LuaSnip' }
   use { 'rafamadriz/friendly-snippets' }
-  -- Tools for DevOps and Golang
+  ---------------------------------------------------
 
   if packer_boostrap then
     require('packer').sync()

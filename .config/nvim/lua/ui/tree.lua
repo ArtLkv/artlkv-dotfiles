@@ -1,27 +1,22 @@
 ----------------------------------
 -- Global settings
-----------------------------------
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 ----------------------------------
 -- Global variables
-----------------------------------
 local api = require("nvim-tree.api")
 local HEIGHT_RATIO = 0.8  -- You can change this
 local WIDTH_RATIO = 0.5   -- You can change this too
 ----------------------------------
 -- Open file after creation
-----------------------------------
 api.events.subscribe(api.events.Event.FileCreated, function(file)
   vim.cmd("edit " .. file.fname)
 end)
 ----------------------------------
--- Make Float Window
-----------------------------------
+-- Main configuration for NvimTree plugin
 require('nvim-tree').setup({
   sort_by = "case_sensitive",
   view = {
-    adaptive_size = true,
     float = {
       enable = true,
       open_win_config = function()
@@ -32,8 +27,7 @@ require('nvim-tree').setup({
         local window_w_int = math.floor(window_w)
         local window_h_int = math.floor(window_h)
         local center_x = (screen_w - window_w) / 2
-        local center_y = ((vim.opt.lines:get() - window_h) / 2)
-                         - vim.opt.cmdheight:get()
+        local center_y = ((vim.opt.lines:get() - window_h) / 2) - vim.opt.cmdheight:get()
         return {
           border = 'rounded',
           relative = 'editor',
@@ -42,13 +36,17 @@ require('nvim-tree').setup({
           width = window_w_int,
           height = window_h_int,
         }
-        end,
+      end,
     },
     width = function()
       return math.floor(vim.opt.columns:get() * WIDTH_RATIO)
     end,
   },
   renderer = {
-    group_empty = true, -- concat empty folders to one folder on nvim.tree view
+    group_empty = false,
+  },
+  filters = {
+    dotfiles = true,
   },
 })
+----------------------------------
