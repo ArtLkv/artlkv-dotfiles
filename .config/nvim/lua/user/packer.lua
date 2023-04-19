@@ -14,6 +14,7 @@ return require('packer').startup(function(use)
   use { 'nvim-lua/plenary.nvim' } -- Async support for NeoVim
   use { 'windwp/nvim-autopairs' } -- Auto add pair for brackets, tags and other
   use { 'ray-x/lsp_signature.nvim' } -- If LSP don't support signature, fix it 
+  use { 'numToStr/Comment.nvim' } -- Comment System
   ---------------------------------------------------
   -- Core plugins
   use { 'nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' } } -- Text Parser
@@ -21,6 +22,7 @@ return require('packer').startup(function(use)
   use { 'nvim-tree/nvim-tree.lua' } -- File Manager
   use { 'neovim/nvim-lspconfig' } -- LSP
   use { 'hrsh7th/nvim-cmp' } -- Auto-Complete
+  use { 'akinsho/toggleterm.nvim', tag='*' } -- Terminal Integration
   ---------------------------------------------------
   -- Auto-Complete plugins
   use { 'hrsh7th/cmp-nvim-lsp' } -- Add LSP support for Auto-Complete

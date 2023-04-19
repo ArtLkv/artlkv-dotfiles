@@ -6,6 +6,7 @@ function save_file()
   vim.cmd[[update]]
 end
 map('n', '<leader>sf', save_file)
+map('n', '<leader>t', vim.cmd.ToggleTerm)
 ----------------------------
 -- Disable arrows. Only hjkl
 map('', '<up>', '', opts)
