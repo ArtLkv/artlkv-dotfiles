@@ -28,6 +28,8 @@ return require('packer').startup(function(use)
   -- LSP
   use { 'neovim/nvim-lspconfig' }
   use { 'ray-x/lsp_signature.nvim' }
+  -- Java Tools
+  use { 'mfussenegger/nvim-jdtls' }
   -- Debugger
   -- Autocomplete - hrsh7th pack
   use { 'hrsh7th/nvim-cmp' }

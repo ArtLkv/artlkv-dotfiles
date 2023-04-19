@@ -55,15 +55,94 @@ lspconfig.gopls.setup({
   single_file_support = true,
 })
 
-lspconfig.omnisharp.setup({
-  on_attach = on_attach,
-  cmd = { 'dotnet', '/home/artlkv/omnisharp/OmniSharp.dll' },
-  root_dir = util.root_pattern('.csproj', '.sln', '.git'),
-  sdk_include_prereleases = true,
-  enable_import_completion = true,
-  enable_editorconfig_support = true,
-  organize_import_on_format = false,
-  enable_roslyn_analyzers = false,
-  analyze_open_documents_only = false,
-  enable_ms_build_load_projects_on_demand = false, -- Set True if very big codebase
+-----------------------------------
+-- Java
+-----------------------------------
+local jdtls_jar_path = '/home/artlkv/jdt/jdtls/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar'
+local config_path = '/home/artlkv/jdt/jdtls/config_linux'
+local lombok_jar_path = '/home/artlkv/jdt/lombok.jar'
+local google_java_formatter = '/home/artlkv/jdt/eclipse-java-goodle-style.xml'
+-- TODO: Add debugger support
+
+local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
+local workspace_path = '/home/artlkv/jdt/workspace/' .. project_name
+
+lspconfig.jdtls.setup({
+  cmd = {
+    'java',
+    '-Declipse.application=org.eclipse.jdt.ls.core.id1',
+    '-Dosgi.bundles.defaultStartLevel=4',
+    '-Declipse.product=org.eclipse.jdt.ls.core.product',
+    '-Dlog.protocol=true',
+    '-Dlog.level=ALL',
+    '-javaagent:' .. lombok_jar_path,
+    '-Xms4G',
+    '-Xmx16G',
+    '--add-modules=ALL-SYSTEM',
+    '--add-opens', 'java.base/java.util=ALL-UNNAMED',
+    '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
+    '-jar', jdtls_jar_path,
+    '-configuration', config_path,
+    '-data', workspace_path,
+  },
+  root_dir = util.root_pattern('.git', 'mvnw', 'pom.xml', 'gradlew', 'build.gradle'),
+  settings = {
+    java = {
+      home = '/home/artlkv/jdt/jdk/temurin/17.0.6',
+      configuration = {
+        updateBuildConfiguration = 'interactive',
+        runtimes = {
+          {
+            name = 'JavaSE-17',
+            path = '/home/artlkv/jdt/jdk/temurin/17.0.6',
+          },
+        },
+      },
+      format = {
+        enabled = true,
+        settings = {
+            url = google_java_formatter_path,
+            profile = 'GoogleStyle',
+        }
+      },
+      eclipse = {
+        downloadSources = true,
+      },
+      maven = {
+        downloadSources = true,
+      },
+      implementationsCodeLens = {
+        enabled = true,
+      },
+      referencesCodeLens = {
+        enabled = true,
+      },
+      references = {
+        includeDecompiledSources = true,
+      },
+    },
+    signatureHelp = { enabled = true },
+    completion = {
+      importOrder = {
+        'java',
+        'javax',
+        'com',
+        'org'
+      },
+    },
+    sources = {
+      organizeImports = {
+        starThreshold = 9999,
+        staticStarThreshold = 9999,
+      },
+    },
+    codeGeneration = {
+      toString = {
+        template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}",
+      },
+      useBlocks = true,
+    },
+  },
+  flags = { allow_incremental_sync = true },
+  init_options = {},
 })

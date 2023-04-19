@@ -37,5 +37,3 @@ opt.completeopt='menuone,noinsert,noselect'
 opt.swapfile = false
 opt.backup = false
 opt.writebackup = false
-opt.undodir = vim.fn.stdpath('config') .. '/undodir'
-opt.undofile = true
