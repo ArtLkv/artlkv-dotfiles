@@ -1,4 +1,4 @@
-# Tasks
+## Tasks
 - [ ] Debugger support
 - [x] Terminal support
 - [x] Comment support
@@ -16,3 +16,9 @@
 - [ ] Bash support
 - [ ] Json, html, css support
 - [ ] Docker support
+
+## Plans
+- [ ] Add `govulncheck` support
+- [ ] Add `iferr` support
+- [ ] Add `gomodifytags` support
+- [ ] Add `gotests` support
