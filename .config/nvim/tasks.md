@@ -2,8 +2,11 @@
 - [ ] Debugger support
 - [x] Terminal support
 - [x] Comment support
+- [x] Notification system
+- [x] API system
+- [x] Different settings for different programming languages
 - [ ] Git support
-- [ ] Golang tools install script
+- [x] Golang tools install script
 - [ ] Terraform support
 - [ ] Ansible support
 - [ ] Yaml support
