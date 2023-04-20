@@ -1,9 +1,3 @@
-require('core.api')
-require('core.snippets')
-require('core.lsp')
-require('core.cmp')
-require('core.telescope')
-require('core.treesitter')
-require('core.other')
-
-vim.notify = require('notify')
+require('core.api') -- Modify NeoVim API
+require('core.system') -- Add main text editor functions 
+require('core.features') -- Add some features

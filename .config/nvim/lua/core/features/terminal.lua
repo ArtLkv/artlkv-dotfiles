@@ -1,5 +1,3 @@
-require('nvim-autopairs').setup({})
-require('Comment').setup({})
 require('toggleterm').setup({
   autochdir = false,
   hide_numbers = true,
@@ -10,4 +8,4 @@ require('toggleterm').setup({
   persist_size = true,
   persist_mode = true,
   close_on_exit = true
-})
+}) 
