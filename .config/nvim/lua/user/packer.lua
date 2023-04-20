@@ -15,6 +15,7 @@ return require('packer').startup(function(use)
   use { 'windwp/nvim-autopairs' } -- Auto add pair for brackets, tags and other
   use { 'ray-x/lsp_signature.nvim' } -- If LSP don't support signature, fix it 
   use { 'numToStr/Comment.nvim' } -- Comment System
+  use { 'rcarriga/nvim-notify' } -- Notification System
   ---------------------------------------------------
   -- Core plugins
   use { 'nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' } } -- Text Parser

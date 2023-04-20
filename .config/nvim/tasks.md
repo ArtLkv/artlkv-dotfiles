@@ -1,11 +1,15 @@
 # Tasks
+- [ ] Debugger support
 - [x] Terminal support
 - [x] Comment support
+- [ ] Git support
 - [ ] Golang tools install script
 - [ ] Terraform support
 - [ ] Ansible support
 - [ ] Yaml support
 - [ ] Python, Golang support
+    - [x] Python
+    - [x] Golang
 - [ ] Bash support
 - [ ] Json, html, css support
 - [ ] Docker support
