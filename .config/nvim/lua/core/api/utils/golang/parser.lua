@@ -21,4 +21,16 @@ function M.get_struct_at_cursor_position(row, col)
     return nodes[#nodes]
   end
 end
+
+function M.get_func_at_cursor_position(row, col)
+  local query = M.querys.func .. ' ' .. M.querys.method_name
+  local bufnr = vim.api.nvim_get_current_buf()
+  local nodes = parser.nodes_at_cursor(query, bufnr, row, col)
+  if nodes == nil then
+    vim.notify('Function not found', 'warn')
+  else
+    return nodes[#nodes]
+  end
+end
+
 return M

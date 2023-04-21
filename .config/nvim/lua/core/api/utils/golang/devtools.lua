@@ -1,14 +1,13 @@
 local M = {}
 
-local parser = require('core.api.utils.golang.code_parser')
+local parser = require('core.api.utils.golang.parser')
 local extensions = require('core.api.extensions')
-
 --------------------------------------------
 -- Golang Tools Variables
 M.urls = {
   gopls = 'golang.org/x/tools/gopls',
   gomodifytags = 'github.com/fatih/gomodifytags',
-  -- gotests = 'github.com/cweill/gotests/...',
+  gotests = 'github.com/cweill/gotests/...',
   -- goplay = 'github.com/haya14busa/goplay/cmd/goplay',
   -- impl = 'github.com/josharian/impl',
   -- dlv = 'github.com/go-delve/delve/cmd/dlv',
@@ -17,6 +16,66 @@ M.urls = {
 }
 --------------------------------------------
 -- Golang Utils
+--------------------------------------------
+-- Golang Tests support
+local function run_test(cmd_args)
+  local Job = require('plenary.job')
+  Job:new({
+    command = 'gotests',
+    args = cmd_args,
+    on_exit = function(_, retval)
+      if retval ~= 0 then
+        vim.notify('Command `gotests ' .. unpack(cmd_args) .. '` FAILED with code' .. retval, 'error')
+        return
+      end
+      vim.notify('Unit test(s) generation SUCCEDED', 'info')
+    end,
+  }):start()
+end
+
+local function create_test(cmd_args)
+  local fpath = vim.fn.expand('%')
+  table.insert(cmd_args, '-w')
+  table.insert(cmd_args, fpath)
+  run_test(cmd_args)
+end
+
+function M.one_function_test(is_parallel)
+  local nodes = parser.get_func_at_cursor_position(unpack(vim.api.nvim_win_get_cursor(0)))
+  if nodes == nil or nodes.name == nil then
+    vim.notify('Cursor on func/method and execute the command again', 'info')
+    return
+  end
+
+  local cmd_args = {
+    '-only', nodes.name
+  }
+  if is_parallel then
+    table.insert(cmd_args, '-parallel')
+  end
+
+  create_test(cmd_args)
+end
+
+function M.all_functions_tests(is_parallel)
+  local cmd_args = { '-all' }
+  if is_parallel then
+    table.insert(cmd_args, '-parallel')
+  end
+
+  create_test(cmd_args)
+end
+
+function M.all_exported_functions_tests(is_parallel)
+  local cmd_args = { '-exported' }
+  if is_parallel then
+    table.insert(cmd_args, '-parallel')
+  end
+
+  create_test(cmd_args)
+end
+--------------------------------------------
+-- Golang Tags support
 local function modify_tags(operation, type)
   local Job = require('plenary.job')
   local file_path = vim.fn.expand('%')
@@ -44,8 +103,11 @@ local function modify_tags(operation, type)
   elseif operation == 'remove' then
     table.insert(cmd_args, '-remove-tags')
     table.insert(cmd_args, type)
+  elseif operation == 'clear' then
+    table.insert(cmd_args, '-clear-tags')
   end
 
+  print(unpack(cmd_args))
   local res_data
   Job:new({
     command = 'gomodifytags',
@@ -71,15 +133,17 @@ local function modify_tags(operation, type)
   vim.api.nvim_buf_set_lines(0, tagged.start - 1, tagged.start - 1 + #tagged.lines, false, tagged.lines)
   vim.cmd('write')
 end
---------------------------------------------
--- Golang Tags support
--- TODO: Rename `type` to ...
-function M.add_tags(type)
+
+function M.tags_add(type)
   modify_tags('add', type)
 end
 
-function M.remove_tags(type)
+function M.tags_rm(type)
   modify_tags('remove', type)
+end
+
+function M.tags_clear()
+  modify_tags('clear', type)
 end
 --------------------------------------------
 -- Golang Mod support
