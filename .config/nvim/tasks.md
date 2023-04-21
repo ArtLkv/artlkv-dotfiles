@@ -14,7 +14,7 @@
     - [ ] Bash
     - [x] Python
     - [x] Golang
-    - [ ] Lua
+    - [x] Lua
 - [ ] Debugger support
 - [ ] Json, html, css, js, ts support (???)
 

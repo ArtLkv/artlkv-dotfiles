@@ -1,4 +1,4 @@
-GT = {}
+local GT = {}
 
 GT.urls = {
   gopls = 'golang.org/x/tools/gopls',
@@ -10,6 +10,36 @@ GT.urls = {
   iferr = 'github.com/koron/iferr',
   staticcheck = 'honnef.co/go/tools/cmd/staticcheck'
 }
+
+function GT.create_module(name)
+  local Job = require('plenary.job')
+  Job:new({
+    command = 'go',
+    args = { 'mod', 'init', name },
+    on_exit = function(_, retval)
+      if retval ~= 0 then
+        vim.notify('Initializing go module `' .. name .. '` FAILED with code' .. retval, 'error')
+        return
+      end
+      vim.notify('Initializing go module `' .. name .. '` SUCCEDED', 'info')
+    end,
+  }):start()
+end
+
+function GT.tidy_module()
+  local Job = require('plenary.job')
+  Job:new({
+    command = 'go',
+    args = { 'mod', 'tidy' },
+    on_exit = function(_, retval)
+      if retval ~= 0 then
+        vim.notify('Tidy go module FAILED with code' .. retval, 'error')
+        return
+      end
+      vim.notify('Tidy go module SUCCEDED', 'info')
+    end,
+  }):start()
+end
 
 function GT.install_tools()
   for pkg, _ in pairs(GT.urls) do
