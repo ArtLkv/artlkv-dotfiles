@@ -1,3 +1,5 @@
+--------------------------------------------
+-- Golang commands
 vim.api.nvim_create_user_command('GoInstallDeps', function()
   require('core.api.utils.go_devtools').install_tools()
 end, {})
@@ -9,3 +11,10 @@ end, { nargs = 1 })
 vim.api.nvim_create_user_command('GoModTidy', function()
   require('core.api.utils.go_devtools').tidy_module()
 end, {})
+
+vim.api.nvim_create_user_command('GoAddTags', function(opts)
+end, { nargs = 1 })
+
+vim.api.nvim_create_user_command('GoRemoveTags', function(opts)
+end, { nargs = 1 })
+--------------------------------------------
