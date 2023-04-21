@@ -29,7 +29,7 @@ telescope.setup({
 require('telescope').setup({
   pickers = {
     live_grep = {
-      additional_args = function(_ts)
+      additional_args = function(_) -- _ts
         return { '--hidden' }
       end,
     },

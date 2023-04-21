@@ -1,6 +1,6 @@
 -- Disable TreeSitter, if file's line count more than 10000
-function treesitter_disable(lang, bufnr)
-    return vim.api.nvim_buf_line_count(bufnr) > 10000    
+local function treesitter_disable(_, bufnr) -- lang, bufnr
+    return vim.api.nvim_buf_line_count(bufnr) > 10000
 end
 
 require'nvim-treesitter.configs'.setup {

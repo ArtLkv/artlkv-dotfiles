@@ -8,4 +8,4 @@ require('toggleterm').setup({
   persist_size = true,
   persist_mode = true,
   close_on_exit = true
-}) 
+})

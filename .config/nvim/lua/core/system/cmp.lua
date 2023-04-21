@@ -17,7 +17,7 @@ lspkind.init({
     Property = "ﰠ",
     Unit = "塞",
     Value = "",
-    Enum = "", 
+    Enum = "",
     Keyword = "",
     Snippet = "",
     Color = "",
@@ -64,7 +64,7 @@ cmp.setup({
       mode = 'symbol',
       maxwidth = 50,
       ellipsis_char = '...',
-      before = function(entry, vim_item)
+      before = function(_, vim_item) -- entry, vim_item
         return vim_item
       end,
     }),

@@ -11,7 +11,7 @@ GT.urls = {
   staticcheck = 'honnef.co/go/tools/cmd/staticcheck'
 }
 
-function GT.install_deps()
+function GT.install_tools()
   for pkg, _ in pairs(GT.urls) do
     local Job = require('plenary.job') -- For Async work
     local url = GT.urls[pkg] .. '@latest'
@@ -20,10 +20,10 @@ function GT.install_deps()
       args = { 'install', url },
       on_exit = function(_, retval)
         if retval ~= 0 then
-          vim.notify("Installing " .. url .. " FAILED with code " .. retval, "error")
+          vim.notify('Installing ' .. url .. ' FAILED with code ' .. retval, 'error')
           return
         end
-        vim.notify("Installing " .. url .. " SUCCEDED", "info")
+        vim.notify('Installing ' .. url .. ' SUCCEDED', 'info')
       end,
     }):start()
   end

@@ -2,29 +2,29 @@
 -- Main Mappings
 local map = vim.keymap.set
 vim.g.mapleader = ' '
-function save_file()
+local function save_file()
   vim.cmd[[update]]
 end
 map('n', '<leader>sf', save_file)
 map('n', '<leader>t', vim.cmd.ToggleTerm)
 ----------------------------
 -- Disable arrows. Only hjkl
-map('', '<up>', '', opts)
-map('', '<down>', '', opts)
-map('', '<left>', '', opts)
-map('', '<right>', '', opts)
+map('', '<up>', '', {})
+map('', '<down>', '', {})
+map('', '<left>', '', {})
+map('', '<right>', '', {})
 -----------------------------
 -- Telescope Mappings
 local builtin = require('telescope.builtin')
 map('n', '<leader>fv', vim.cmd.NvimTreeToggle)
 map('n', '<leader>ff', builtin.find_files)
 map('n', '<leader>fb', builtin.buffers)
-map('n', '<leader>fg', function() 
+map('n', '<leader>fg', function()
   builtin.grep_string({ search = vim.fn.input('Grep > ') })
 end)
 -----------------------------
 -- Bufferline Mappings
-function delete_buffer()
+local function delete_buffer()
   vim.cmd([[update]])
   vim.cmd([[bdelete!]])
 end

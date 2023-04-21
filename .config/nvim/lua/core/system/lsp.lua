@@ -3,7 +3,7 @@ local util = require('lspconfig/util')
 vim.diagnostic.config({ signs = false })
 --------------------------------------------
 -- On-Attach Function
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr) -- client, bufnr
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   local map = vim.keymap.set
@@ -22,10 +22,30 @@ local on_attach = function(client, bufnr)
   map('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
   map('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
   map('n', 'gr', vim.lsp.buf.references, bufopts)
-  map('n', '<leader>f', function() 
+  map('n', '<leader>f', function()
     vim.lsp.buf.format({ async = true })
   end, bufopts)
 end
+---------------------------------------------
+-- Lua LSP
+lspconfig.lua_ls.setup({
+  settings = {
+    Lua = {
+      runtime = {
+        version = 'LuaJIT',
+      },
+      diagnostics = {
+        globals = { 'vim' },
+      },
+      workspace = {
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
+      telemetry = {
+        enable = false,
+      },
+    },
+  },
+})
 ---------------------------------------------
 -- Python LSP
 lspconfig.pyright.setup({
