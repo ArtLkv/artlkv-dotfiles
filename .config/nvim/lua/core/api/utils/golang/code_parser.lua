@@ -11,13 +11,6 @@ M.querys = {
   func = [[((function_declaration name: (identifier)@function.name) @function.declaration)]],
 }
 
--- M.defaults_name = {
---   ['func'] = 'function',
---   ['if'] = 'if',
---   ['else'] = 'else',
---   ['for'] = 'for',
--- }
-
 function M.get_struct_at_cursor_position(row, col)
   local query = M.querys.struct_block .. ' '  .. M.querys.em_struct_block
   local bufnr = vim.api.nvim_get_current_buf()
