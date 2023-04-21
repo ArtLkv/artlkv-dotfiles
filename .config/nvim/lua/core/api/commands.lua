@@ -14,7 +14,7 @@ end, {})
 
 vim.api.nvim_create_user_command('GoTagsAdd', function(opts)
   require('core.api.utils.golang.devtools').tags_add(opts.fargs[1])
-end, { nargs = 1})
+end, { nargs = 1 })
 
 vim.api.nvim_create_user_command('GoTagsRm', function(opts)
   require('core.api.utils.golang.devtools').tags_rm(opts.fargs[1])
@@ -26,7 +26,7 @@ end, {})
 
 vim.api.nvim_create_user_command('GoTestAdd', function(opts)
   require('core.api.utils.golang.devtools').one_function_test(opts.fargs[1])
-end, { nargs = 1})
+end, { nargs = 1 })
 
 vim.api.nvim_create_user_command('GoTestsAll', function(opts)
   require('core.api.utils.golang.devtools').all_functions_tests(opts.fargs[1])
