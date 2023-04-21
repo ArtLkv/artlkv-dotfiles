@@ -23,6 +23,6 @@
 - [x] Add `gopls` support
 - [ ] Add `govulncheck` support
 - [ ] Add `iferr` support
-- [ ] Add `gomodifytags` support
+- [x] Add `gomodifytags` support
 - [ ] Add `gotests` support
 - [ ] screenkey -p fixed -g 15%x5%+80%+90% --font "Jetbrains Mono NF" --font-color "#9adcfc"
