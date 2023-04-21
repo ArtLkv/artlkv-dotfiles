@@ -1,23 +1,26 @@
 ## Tasks
-- [ ] Debugger support
 - [x] Terminal support
 - [x] Comment support
 - [x] Notification system
 - [x] API system
 - [x] Different settings for different programming languages
 - [ ] Git support
-- [x] Golang tools install script
+- [ ] Docker support
 - [ ] Terraform support
 - [ ] Ansible support
 - [ ] Yaml support
-- [ ] Python, Golang support
+- [ ] Protobuf support
+- [ ] Programming Languages support
+    - [ ] Bash
     - [x] Python
     - [x] Golang
-- [ ] Bash support
-- [ ] Json, html, css support
-- [ ] Docker support
+    - [ ] Lua
+- [ ] Debugger support
+- [ ] Json, html, css, js, ts support (???)
 
 ## Plans
+- [x] Add `pyright` support
+- [x] Add `gopls` support
 - [ ] Add `govulncheck` support
 - [ ] Add `iferr` support
 - [ ] Add `gomodifytags` support

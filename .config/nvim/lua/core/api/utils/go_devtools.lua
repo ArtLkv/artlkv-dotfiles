@@ -11,25 +11,21 @@ GT.urls = {
   staticcheck = 'honnef.co/go/tools/cmd/staticcheck'
 }
 
-function GT.install(pkg)
-  local Job = require('plenary.job') -- For Async work
-  local url = GT.urls[pkg] .. '@latest'
-  Job:new({
-    command = 'go',
-    args = { 'install', url },
-    on_exit = function(_, retval)
-      if retval ~= 0 then
-        vim.notify("Installing " .. url .. " FAILED with code " .. retval, "error")
-        return
-      end
-      vim.notify("Installing " .. url .. " SUCCEDED", "info")
-    end,
-  }):start()
-end
-
 function GT.install_deps()
   for pkg, _ in pairs(GT.urls) do
-    GT.install(pkg, i)
+    local Job = require('plenary.job') -- For Async work
+    local url = GT.urls[pkg] .. '@latest'
+    Job:new({
+      command = 'go',
+      args = { 'install', url },
+      on_exit = function(_, retval)
+        if retval ~= 0 then
+          vim.notify("Installing " .. url .. " FAILED with code " .. retval, "error")
+          return
+        end
+        vim.notify("Installing " .. url .. " SUCCEDED", "info")
+      end,
+    }):start()
   end
 end
 
