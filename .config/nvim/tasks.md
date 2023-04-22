@@ -25,4 +25,5 @@
 - [ ] Json, html, css, js, ts support (???)
 
 ## Plans
+- [ ] Add titles for notification messages
 - [ ] screenkey -p fixed -g 15%x5%+80%+90% --font "Jetbrains Mono NF" --font-color "#9adcfc"
