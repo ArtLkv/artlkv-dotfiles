@@ -9,6 +9,9 @@
     - [x] gomodifytags
     - [x] gotests
     - [ ] iferr
+    - [ ] staticcheck
+    - [ ] impl
+    - [ ] dlv
     - [ ] govulncheck
 - [ ] Bash support
 - [ ] Git support
